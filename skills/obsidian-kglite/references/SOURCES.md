@@ -1,5 +1,7 @@
 # Sources, versions, and what is actually verified
 
+Last verified: 2026-10-26 · kglite 0.21.2 · Obsidian 1.14.5
+
 Everything in this skill is either **verified** (run against a fixture vault with the pinned tool
 version, output quoted) or **documented** (stated by the upstream docs, not exercised here). Nothing is
 inferred from naming.

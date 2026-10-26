@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="340" viewBox="0 0 960 340" role="img" aria-labelledby="title desc">
+  <title id="title">obsidian-kglite flow</title>
+  <desc id="desc">An Obsidian vault is read by kglite okf check and build into a .kgl property graph, which answers Cypher queries, produces a health report, and serves other agents over MCP.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+    <style>
+      .box { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.5; rx: 10; }
+      .accent { fill: #eff6ff; stroke: #1d4ed8; stroke-width: 1.5; rx: 10; }
+      .h { font: 600 16px/1.3 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .s { font: 400 12.5px/1.4 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .m { font: 500 13px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; fill: #1d4ed8; }
+      .e { stroke: #64748b; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="340" fill="#ffffff"/>
+  <text x="32" y="40" class="h">obsidian-kglite: from a vault to a queryable graph</text>
+  <text x="32" y="62" class="s">Read-only build. The vault stays canonical; the graph is a rebuildable lens.</text>
+
+  <rect class="box" x="32" y="100" width="216" height="96"/>
+  <text x="52" y="132" class="h">Obsidian vault</text>
+  <text x="52" y="156" class="s">Markdown, frontmatter,</text>
+  <text x="52" y="174" class="s">wikilinks, tags, .kglite/</text>
+
+  <rect class="box" x="304" y="100" width="216" height="96"/>
+  <text x="324" y="132" class="h">kglite okf check / build</text>
+  <text x="324" y="156" class="s">one read, reported twice:</text>
+  <text x="324" y="174" class="m">check VAULT --strict</text>
+
+  <rect class="accent" x="576" y="100" width="176" height="96"/>
+  <text x="596" y="132" class="h">.kgl graph</text>
+  <text x="596" y="156" class="s">notes, sections,</text>
+  <text x="596" y="174" class="s">chunks, tags, edges</text>
+
+  <rect class="box" x="808" y="72" width="120" height="56"/>
+  <text x="826" y="105" class="m">Cypher</text>
+  <rect class="box" x="808" y="140" width="120" height="56"/>
+  <text x="826" y="173" class="m">report</text>
+  <rect class="box" x="808" y="208" width="120" height="56"/>
+  <text x="826" y="241" class="m">MCP</text>
+
+  <path class="e" d="M 248 148 H 300"/>
+  <path class="e" d="M 520 148 H 572"/>
+  <path class="e" d="M 752 132 C 776 132 780 100 804 100"/>
+  <path class="e" d="M 752 148 H 804"/>
+  <path class="e" d="M 752 168 C 776 168 780 236 804 236"/>
+
+  <text x="32" y="300" class="s">Never written into: build output goes outside the vault. Only okf open caches, and that cache can be relocated or disabled.</text>
+  <text x="32" y="320" class="s">Measured here: orphan notes, dangling links, duplicate stems, hub size, section tree, passage retrieval, table rows.</text>
+</svg>

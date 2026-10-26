@@ -1,6 +1,6 @@
 ---
 name: obsidian-kglite
-description: Build a KGLite knowledge graph from an Obsidian vault and answer questions about notes, backlinks, tags, sections, chunks and dangling links with Cypher. Use whenever the user mentions an Obsidian vault, note graph, backlinks, orphan or dangling notes, broken wikilinks, vault health or audit, "where is X documented", knowledge-graph extraction from markdown, kglite, okf, .kgl, or wants to index or serve a vault to an agent — even when they never say kglite or Cypher.
+description: Build a KGLite knowledge graph from an Obsidian vault and answer questions about notes, backlinks, tags, sections, chunks and dangling links with Cypher. 把 Obsidian vault 读成可查询的知识图谱：孤儿笔记、断链、双链、标签、章节与段落检索，并可用 MCP 交给其他 agent。Use whenever the user mentions an Obsidian vault, note graph, backlinks, orphan or dangling notes, broken wikilinks, vault health or audit, kglite, okf, .kgl, 知识图谱, 双链, 断链, 孤儿笔记 — even when they never say kglite or Cypher.
 ---
 
 # Obsidian → KGLite
@@ -54,6 +54,23 @@ Two consequences matter before writing any query:
   `(section)-[:HAS_SECTION]->(child section)`. Matching from the note reaches only the
   first level; match `(s:Section)` directly when you need every section, and use
   `PARENT_SECTION` to walk up.
+
+### 中文术语对照
+
+Chinese users say these words; the graph calls them something else. Map the request before writing Cypher.
+
+| 你会怎么说 | Graph object | Where to start |
+| --- | --- | --- |
+| 孤儿笔记 / 孤岛笔记 | a note with no semantic edge | `file_path IS NOT NULL` plus a degree filter |
+| 断链 / 空链接 | `_provisional: true` stub | `MATCH (n {_provisional: true})` |
+| 双链 / 反向链接 | typed edges and `LINKS_TO` | `(m)-[r]->(n)` |
+| 标签体系 / 标签树 | `Tag` hub | `(t:Tag)<-[:TAGGED]-(n)` |
+| 章节 / 小节 | `Section` | `HAS_SECTION`, `PARENT_SECTION` |
+| 段落块 / 引用块 | `Chunk` | `text CONTAINS` |
+| 提示框 / 警告块 | `Note` with `kind` | `MATCH (n:Note)` |
+| 参数表 / 字段表 | row nodes from a table rule | `structure.tables` |
+
+Read `references/CYPHER-COOKBOOK.md` for the query behind each row.
 
 Read `references/VAULT-FORMAT.md` when an answer depends on exact resolution, typing or
 edge precedence. It condenses the normative spec with section numbers.
