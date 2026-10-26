@@ -1,0 +1,12 @@
+---
+title: sealed round trip
+---
+flowchart LR
+  accTitle: sealed export round trip
+  accDescr: Build a graph, export and seal it, rebuild from the sealed export, then compare seven checks including determinism and the fixed point of a second export.
+  vault["vault"] --> b1["build"] --> g1[".kgl G1"]
+  g1 --> e1["export + seal<br/>copy .kglite/vault.yaml<br/>drop duplicated keys"] --> s1["sealed A"]
+  s1 --> b2["build"] --> g2[".kgl G2"]
+  g1 -.-> checks["7 checks<br/>notes · bodies · edges<br/>dangling · structure<br/>determinism · fixed point"]
+  g2 -.-> checks
+  checks -.->|fixed point| s1

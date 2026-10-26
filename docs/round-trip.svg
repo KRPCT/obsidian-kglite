@@ -1,0 +1,36 @@
+<svg data-theme="auto" xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="0 0 1240 192" width="1240" height="192" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_r:var(--pele-radius,4px);--_tw:var(--pele-title-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart" aria-labelledby="rt2-1-title" aria-describedby="rt2-1-desc"><style>.pele {
+  --pele-bg: #ffffff;
+  --pele-fg: #1f1f1f;
+  --pele-muted: #6e6e6e;
+  --pele-line: #1f1f1f;
+  --pele-surface: #f3f3f3;
+  --pele-surface-alt: #e6e6e6;
+  --pele-border: #8a8a8a;
+  --pele-accent: #5b7bd5;
+  --pele-critical: #e45756;
+  --pele-error: #e45756;
+  background: var(--pele-bg);
+}
+.pele[data-theme="dark"] {
+  --pele-bg: #17191c;
+  --pele-fg: #e7e9ec;
+  --pele-muted: #a8aeb7;
+  --pele-line: #c4cad2;
+  --pele-surface: #252930;
+  --pele-surface-alt: #30363e;
+  --pele-border: #818b99;
+  --pele-accent: #93b7ff;
+}
+@media (prefers-color-scheme: dark) {
+  .pele[data-theme="auto"] {
+    --pele-bg: #17191c;
+    --pele-fg: #e7e9ec;
+    --pele-muted: #a8aeb7;
+    --pele-line: #c4cad2;
+    --pele-surface: #252930;
+    --pele-surface-alt: #30363e;
+    --pele-border: #818b99;
+    --pele-accent: #93b7ff;
+  }
+}
+</style><title id="rt2-1-title">sealed export round trip</title><desc id="rt2-1-desc">Build a graph, export and seal it, rebuild from the sealed export, then compare seven checks including determinism and the fixed point of a second export.</desc><text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve"><tspan x="620" y="25.6">sealed round trip</tspan></text><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="pele-edge" data-id="L_vault_b1_0"><path d="M77.79,126.25L118.79,126.25"/><path class="pele-marker" d="M125.79,126.25L117.79,129.61L117.79,122.89Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_b1_g1_0"><path d="M195.58,126.25L236.58,126.25"/><path class="pele-marker" d="M243.58,126.25L235.58,129.61L235.58,122.89Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_g1_e1_0"><path d="M330.27,118.25C347.77,118.25 347.77,100.25 365.27,100.25L371.27,100.25"/><path class="pele-marker" d="M378.27,100.25L370.27,103.61L370.27,96.89Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_e1_s1_0"><path d="M570.77,100.25L611.77,100.25"/><path class="pele-marker" d="M618.77,100.25L610.77,103.61L610.77,96.89Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_s1_b2_0"><path d="M717.02,92.25L730.02,92.25C741.02,92.25 741.02,68 752.02,68L758.02,68"/><path class="pele-marker" d="M765.02,68L757.02,71.36L757.02,64.64Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_b2_g2_0"><path d="M834.82,68L875.82,68"/><path class="pele-marker" d="M882.82,68L874.82,71.36L874.82,64.64Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_g1_checks_0"><path d="M330.27,134.25C354.27,134.25 354.27,171.75 378.27,171.75L969.5,171.75C987,171.75 987,148.5 1004.5,148.5L1010.5,148.5" stroke-dasharray="3 4"/><path class="pele-marker" d="M1017.5,148.5L1009.5,151.86L1009.5,145.14Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_g2_checks_0"><path d="M969.5,68C987,68 987,116.5 1004.5,116.5L1010.5,116.5" stroke-dasharray="3 4"/><path class="pele-marker" d="M1017.5,116.5L1009.5,119.86L1009.5,113.14Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_checks_s1_0"><path d="M1017.5,132.5L765.02,132.5C747.52,132.5 747.52,108.25 730.02,108.25L724.02,108.25" stroke-dasharray="3 4"/><path class="pele-marker" d="M717.02,108.25L725.02,104.89L725.02,111.61Z" fill="var(--_l)" stroke="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="L_checks_s1_0"><rect x="890.25" y="122" width="71.81" height="21" rx="3" fill="var(--_bg)"/><text x="926.16" y="137.4" text-anchor="middle">fixed point</text></g></g><g class="pele-nodes"><g class="pele-node pele-shape-rect" data-id="vault" transform="translate(42.9,126.25)"><rect x="-34.9" y="-24" width="69.79" height="48" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">vault</text></g><g class="pele-node pele-shape-rect" data-id="b1" transform="translate(160.69,126.25)"><rect x="-34.9" y="-24" width="69.79" height="48" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">build</text></g><g class="pele-node pele-shape-rect" data-id="g1" transform="translate(286.93,126.25)"><rect x="-43.34" y="-24" width="86.69" height="48" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">.kgl G1</text></g><g class="pele-node pele-shape-rect" data-id="e1" transform="translate(474.52,100.25)"><rect x="-96.25" y="-43.5" width="192.5" height="87" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-15.4">export + seal</tspan><tspan x="0" y="5.6">copy .kglite/vault.yaml</tspan><tspan x="0" y="26.6">drop duplicated keys</tspan></text></g><g class="pele-node pele-shape-rect" data-id="s1" transform="translate(667.9,100.25)"><rect x="-49.13" y="-24" width="98.26" height="48" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">sealed A</text></g><g class="pele-node pele-shape-rect" data-id="b2" transform="translate(799.92,68)"><rect x="-34.9" y="-24" width="69.79" height="48" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">build</text></g><g class="pele-node pele-shape-rect" data-id="g2" transform="translate(926.16,68)"><rect x="-43.34" y="-24" width="86.69" height="48" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">.kgl G2</text></g><g class="pele-node pele-shape-rect" data-id="checks" transform="translate(1124.62,129.08)"><rect x="-107.11" y="-54" width="214.22" height="108" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-25.9">7 checks</tspan><tspan x="0" y="-4.9">notes · bodies · edges</tspan><tspan x="0" y="16.1">dangling · structure</tspan><tspan x="0" y="37.1">determinism · fixed point</tspan></text></g></g></svg>

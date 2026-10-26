@@ -120,6 +120,8 @@ Two rules keep a round trip honest:
 python scripts/vault_roundtrip.py VAULT     # expect: round trip: PASS, seven ok lines
 ```
 
+![Sealed export round trip: build, export and seal, rebuild, seven checks](docs/round-trip.svg)
+
 Bidirectional relations themselves are two queries — in/out degree and reciprocal pairs — in
 `references/CYPHER-COOKBOOK.md` section 3. Mechanisms and failure modes are in
 `references/WRITEBACK.md`.
@@ -171,6 +173,9 @@ Nowhere. kglite is an embedded local engine; the MCP server binds locally by def
   works without the companion pack; `scripts/check_upstream.py` reports when upstream moved.
 - **No prose rewriting.** The repair protocol adds links and annotations; it does not restructure a
   human's text to make a query easier.
+- **Diagrams are code.** Every figure is a Mermaid source under `docs/diagrams/` or
+  `skills/obsidian-kglite/assets/`, rendered to SVG with Pele 1.10.0 and committed next to its source;
+  re-render instead of editing the SVG.
 
 ## Updating the inlined Obsidian material
 

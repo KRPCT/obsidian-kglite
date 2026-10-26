@@ -1,59 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="380" viewBox="0 0 960 380" role="img" aria-labelledby="title desc">
-  <title id="title">obsidian-kglite: the vault and graph loop in both directions</title>
-  <desc id="desc">An Obsidian vault is read by kglite okf check and build into a .kgl property graph. The graph answers Cypher queries, produces a health report and serves agents over MCP; it also writes back to the vault as a canvas, a skipped backlinks index, or a sealed export.</desc>
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
-    </marker>
-    <marker id="backarrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1d4ed8"/>
-    </marker>
-    <style>
-      .box { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.5; rx: 10; }
-      .accent { fill: #eff6ff; stroke: #1d4ed8; stroke-width: 1.5; rx: 10; }
-      .h { font: 600 16px/1.3 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
-      .s { font: 400 12.5px/1.4 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; }
-      .m { font: 500 13px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; fill: #1d4ed8; }
-      .e { stroke: #64748b; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
-      .b { stroke: #1d4ed8; stroke-width: 1.5; fill: none; stroke-dasharray: 6 4; marker-end: url(#backarrow); }
-    </style>
-  </defs>
-
-  <rect x="0" y="0" width="960" height="380" fill="#ffffff"/>
-  <text x="32" y="38" class="h">obsidian-kglite: the loop runs both ways</text>
-  <text x="32" y="60" class="s">Reading is read-only. Writing back has three mechanisms, and only one of them changes the graph.</text>
-
-  <rect class="box" x="32" y="110" width="216" height="96"/>
-  <text x="52" y="142" class="h">Obsidian vault</text>
-  <text x="52" y="166" class="s">Markdown, frontmatter,</text>
-  <text x="52" y="184" class="s">wikilinks, tags, .kglite/</text>
-
-  <rect class="box" x="304" y="110" width="216" height="96"/>
-  <text x="324" y="142" class="h">kglite okf check / build</text>
-  <text x="324" y="166" class="s">one read, reported twice:</text>
-  <text x="324" y="184" class="m">check VAULT --strict</text>
-
-  <rect class="accent" x="576" y="110" width="176" height="96"/>
-  <text x="596" y="142" class="h">.kgl graph</text>
-  <text x="596" y="166" class="s">notes, sections,</text>
-  <text x="596" y="184" class="s">chunks, tags, edges</text>
-
-  <rect class="box" x="808" y="82" width="120" height="56"/>
-  <text x="826" y="115" class="m">Cypher</text>
-  <rect class="box" x="808" y="150" width="120" height="56"/>
-  <text x="826" y="183" class="m">report</text>
-  <rect class="box" x="808" y="218" width="120" height="56"/>
-  <text x="826" y="251" class="m">MCP</text>
-
-  <path class="e" d="M 248 158 H 300"/>
-  <path class="e" d="M 520 158 H 572"/>
-  <path class="e" d="M 752 142 C 776 142 780 110 804 110"/>
-  <path class="e" d="M 752 158 H 804"/>
-  <path class="e" d="M 752 176 C 776 176 780 246 804 246"/>
-
-  <path class="b" d="M 664 206 C 664 300 520 300 300 300 C 180 300 140 280 140 210"/>
-  <text x="330" y="326" class="m">write back: canvas · skipped index · sealed export</text>
-  <text x="330" y="344" class="s">canvas and the kg_skip index leave every count unchanged; a sealed export is a new tree</text>
-
-  <text x="32" y="366" class="s">Bidirectional links: one directed edge in the graph, two views in the vault — outbound in the note, inbound in the backlink panel.</text>
-</svg>
+<svg data-theme="auto" xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="0 0 415 789" width="415" height="789" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_r:var(--pele-radius,4px);--_tw:var(--pele-title-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart" aria-labelledby="arch2-1-title" aria-describedby="arch2-1-desc"><style>.pele {
+  --pele-bg: #ffffff;
+  --pele-fg: #1f1f1f;
+  --pele-muted: #6e6e6e;
+  --pele-line: #1f1f1f;
+  --pele-surface: #f3f3f3;
+  --pele-surface-alt: #e6e6e6;
+  --pele-border: #8a8a8a;
+  --pele-accent: #5b7bd5;
+  --pele-critical: #e45756;
+  --pele-error: #e45756;
+  background: var(--pele-bg);
+}
+.pele[data-theme="dark"] {
+  --pele-bg: #17191c;
+  --pele-fg: #e7e9ec;
+  --pele-muted: #a8aeb7;
+  --pele-line: #c4cad2;
+  --pele-surface: #252930;
+  --pele-surface-alt: #30363e;
+  --pele-border: #818b99;
+  --pele-accent: #93b7ff;
+}
+@media (prefers-color-scheme: dark) {
+  .pele[data-theme="auto"] {
+    --pele-bg: #17191c;
+    --pele-fg: #e7e9ec;
+    --pele-muted: #a8aeb7;
+    --pele-line: #c4cad2;
+    --pele-surface: #252930;
+    --pele-surface-alt: #30363e;
+    --pele-border: #818b99;
+    --pele-accent: #93b7ff;
+  }
+}
+</style><title id="arch2-1-title">vault to graph and back</title><desc id="arch2-1-desc">A vault is read into a property graph. The graph answers queries, produces a health report and serves MCP; it writes back as a canvas, a skipped backlinks index, or a sealed export.</desc><text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve"><tspan x="207.5" y="25.6">obsidian-kglite loop</tspan></text><g class="pele-clusters"><g class="pele-cluster" data-id="writeback"><rect x="223.58" y="443" width="182.74" height="338" fill="var(--_a)" fill-opacity="0.5" stroke="var(--_b)" style="rx:var(--_r)"/></g><g class="pele-cluster" data-id="outputs"><rect x="17.76" y="443" width="165.82" height="284" fill="var(--_a)" fill-opacity="0.5" stroke="var(--_b)" style="rx:var(--_r)"/></g></g><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="pele-edge" data-id="L_vault_build_0"><path d="M228.18,110L228.18,118.97C228.18,123.81 118.43,125.65 118.43,130.5L118.43,176"/><path class="pele-marker" d="M118.43,183L115.07,175L121.79,175Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_build_kg_0"><path d="M118.43,249L118.43,290"/><path class="pele-marker" d="M118.43,297L115.07,289L121.79,289Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_kg_cypher_0"><path d="M84.67,363C84.67,403 100.67,403 100.67,443L100.67,476"/><path class="pele-marker" d="M100.67,483L97.31,475L104.03,475Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_kg_report_0"><path d="M100.67,363L100.67,564"/><path class="pele-marker" d="M100.67,571L97.31,563L104.03,563Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_kg_mcp_0"><path d="M116.67,363C116.67,403 100.67,403 100.67,443L100.67,652"/><path class="pele-marker" d="M100.67,659L97.31,651L104.03,651Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_kg_canvas_0"><path d="M160.86,363C160.86,395.24 190.14,415 237.91,415C285.68,415 314.95,425.64 314.95,443L314.95,476" stroke-dasharray="3 4"/><path class="pele-marker" d="M314.95,483L311.59,475L318.31,475Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_kg_bl_0"><path d="M176.86,363C176.86,387.8 203.1,403 245.91,403C288.72,403 314.95,418.2 314.95,443L314.95,582" stroke-dasharray="3 4"/><path class="pele-marker" d="M314.95,589L311.59,581L318.31,581Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_kg_exp_0"><path d="M192.86,363C192.86,380.36 216.06,391 253.91,391C291.76,391 314.95,410.76 314.95,443L314.95,688" stroke-dasharray="3 4"/><path class="pele-marker" d="M314.95,695L311.59,687L318.31,687Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_canvas_vault_0"><path d="M314.95,483L314.95,443C314.95,403 272.38,403 272.38,363L272.38,117" stroke-dasharray="3 4"/><path class="pele-marker" d="M272.38,110L275.74,118L269.02,118Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_bl_vault_0"><path d="M314.95,589L314.95,117" stroke-dasharray="3 4"/><path class="pele-marker" d="M314.95,110L318.31,118L311.59,118Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_exp_vault_0"><path d="M314.95,695L314.95,443C314.95,403 330.95,403 330.95,363L330.95,117" stroke-dasharray="3 4"/><path class="pele-marker" d="M330.95,110L334.31,118L327.59,118Z" fill="var(--_l)" stroke="none"/></g></g><g class="pele-cluster-titles"><g class="pele-cluster-title" data-id="writeback"><text fill="none" stroke="color-mix(in srgb,var(--_a) 50%,var(--_bg))" stroke-width="5" stroke-linejoin="round" x="314.95" y="468.6" text-anchor="middle">write back to the vault</text><text class="pele-cluster-label" fill="var(--_m)" x="314.95" y="468.6" text-anchor="middle">write back to the vault</text></g><g class="pele-cluster-title" data-id="outputs"><text fill="none" stroke="color-mix(in srgb,var(--_a) 50%,var(--_bg))" stroke-width="5" stroke-linejoin="round" x="100.24" y="468.6" text-anchor="middle">consume the graph</text><text class="pele-cluster-label" fill="var(--_m)" x="100.24" y="468.6" text-anchor="middle">consume the graph</text></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="L_vault_build_0"><rect x="100.43" y="132.5" width="36.01" height="21" rx="3" fill="var(--_bg)"/><text x="118.43" y="147.9" text-anchor="middle">read</text></g></g><g class="pele-nodes"><g class="pele-node pele-shape-rect" data-id="vault" transform="translate(280.38,77)"><rect x="-104.19" y="-33" width="208.38" height="66" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-4.9">Obsidian vault</tspan><tspan x="0" y="16.1">Markdown · links · tags</tspan></text></g><g class="pele-node pele-shape-rect" data-id="build" transform="translate(118.43,216)"><rect x="-75.36" y="-33" width="150.72" height="66" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-4.9">okf check / build</tspan><tspan x="0" y="16.1">read-only</tspan></text></g><g class="pele-node pele-shape-rect" data-id="kg" transform="translate(118.43,330)"><rect x="-110.43" y="-33" width="220.86" height="66" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-4.9">.kgl graph</tspan><tspan x="0" y="16.1">notes · sections · chunks</tspan></text></g><g class="pele-node pele-shape-rect" data-id="cypher" transform="translate(100.67,507)"><rect x="-43.78" y="-24" width="87.57" height="48" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">Cypher</text></g><g class="pele-node pele-shape-rect" data-id="report" transform="translate(100.67,595)"><rect x="-62.91" y="-24" width="125.82" height="48" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">health report</text></g><g class="pele-node pele-shape-rect" data-id="mcp" transform="translate(100.67,683)"><rect x="-60.22" y="-24" width="120.45" height="48" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">MCP server</text></g><g class="pele-node pele-shape-rect zero" data-id="canvas" transform="translate(314.95,516)"><rect x="-67.8" y="-33" width="135.6" height="66" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r);fill:#e8f5e9;stroke:#2e7d32;"/><text class="pele-label" style="fill:#1b5e20;" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-4.9">Graph.canvas</tspan><tspan x="0" y="16.1">not parsed</tspan></text></g><g class="pele-node pele-shape-rect zero" data-id="bl" transform="translate(314.95,622)"><rect x="-65.12" y="-33" width="130.24" height="66" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r);fill:#e8f5e9;stroke:#2e7d32;"/><text class="pele-label" style="fill:#1b5e20;" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-4.9">Backlinks.md</tspan><tspan x="0" y="16.1">kg_skip</tspan></text></g><g class="pele-node pele-shape-rect tree" data-id="exp" transform="translate(314.95,728)"><rect x="-66.02" y="-33" width="132.05" height="66" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r);fill:#fff3e0;stroke:#e65100;"/><text class="pele-label" style="fill:#bf360c;" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-4.9">sealed export</tspan><tspan x="0" y="16.1">reconciled</tspan></text></g></g></svg>

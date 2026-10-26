@@ -1,0 +1,35 @@
+---
+title: obsidian-kglite loop
+---
+flowchart TB
+  accTitle: vault to graph and back
+  accDescr: A vault is read into a property graph. The graph answers queries, produces a health report and serves MCP; it writes back as a canvas, a skipped backlinks index, or a sealed export.
+  vault["Obsidian vault<br/>Markdown · links · tags"]
+  build["okf check / build<br/>read-only"]
+  kg[".kgl graph<br/>notes · sections · chunks"]
+  vault -->|read| build --> kg
+  subgraph outputs["consume the graph"]
+    direction LR
+    cypher["Cypher"]
+    report["health report"]
+    mcp["MCP server"]
+  end
+  subgraph writeback["write back to the vault"]
+    direction LR
+    canvas["Graph.canvas<br/>not parsed"]
+    bl["Backlinks.md<br/>kg_skip"]
+    exp["sealed export<br/>reconciled"]
+  end
+  kg --> cypher
+  kg --> report
+  kg --> mcp
+  kg -.-> canvas
+  kg -.-> bl
+  kg -.-> exp
+  canvas -.-> vault
+  bl -.-> vault
+  exp -.-> vault
+  classDef zero fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20
+  classDef tree fill:#fff3e0,stroke:#e65100,color:#bf360c
+  class canvas,bl zero
+  class exp tree

@@ -5,12 +5,9 @@ graph is easy to trust because nothing is written. Writing a graph back into a v
 can quietly corrupt the thing it was supposed to describe, so this file treats it as three separate
 mechanisms with three different blast radii.
 
-```text
-vault ──okf build──▶ graph ──okf export──▶ vault (a different vault, sealed)
-                      │
-                      ├──canvas──▶ VAULT/Graph.canvas   (not scanned: zero impact)
-                      └──index───▶ VAULT/Backlinks.md   (kg_skip: zero impact)
-```
+![Three write-back paths: canvas and the skipped index change nothing, a sealed export produces a new tree](../assets/writeback-paths.svg)
+
+Source: [`assets/writeback-paths.mmd`](../assets/writeback-paths.mmd), rendered with Pele 1.10.0. Source and output are committed together so the diagram stays editable and diffable.
 
 ## Pick the mechanism by what you want to change
 

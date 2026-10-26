@@ -1,0 +1,17 @@
+---
+title: three write-back paths
+---
+flowchart TB
+  accTitle: three write-back paths
+  accDescr: Canvas and the skipped backlinks index leave every graph count unchanged. A sealed export produces a new vault tree and leaves the source vault untouched.
+  kg[".kgl graph"]
+  kg --> canvas["vault_canvas.py<br/>Graph.canvas"]
+  kg --> bl["vault_writeback.py backlinks<br/>Backlinks.md"]
+  kg --> exp["vault_writeback.py export<br/>sealed tree"]
+  canvas -->|canvas is never parsed| v1["vault unchanged"]
+  bl -->|kg_skip true| v2["vault unchanged"]
+  exp -->|new tree, source untouched| v3["new vault"]
+  classDef same fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20
+  classDef new fill:#fff3e0,stroke:#e65100,color:#bf360c
+  class canvas,bl,v1,v2 same
+  class exp,v3 new

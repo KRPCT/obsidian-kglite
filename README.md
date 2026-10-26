@@ -104,6 +104,8 @@ round trip: PASS
   seal removed 1 duplicated frontmatter key(s) in 1 file(s); declarations copied: vault.yaml
 ```
 
+![sealed 导出往返：构建、导出并封口、重建、七项检查](docs/round-trip.svg)
+
 双向关系本身就用两条查询表达：入链与出链度数、以及互为链接的配对（`references/CYPHER-COOKBOOK.md` 第 3 节）。写回机制、失败模式与「哪些东西永远留在 vault 里」见 `references/WRITEBACK.md`。
 
 ## 已验证的事实
@@ -174,9 +176,13 @@ skills/obsidian-kglite/
     OBSIDIAN-MARKDOWN.md       内联的 Obsidian Markdown 要点（随上游校验）
     SOURCES.md                 来源、版本、已验证与仅文档的边界
   scripts/                     七个脚本：封装、健康报告、漂移检查、本地部署、canvas、写回、往返校验
-  assets/                      vault.yaml 起始配置、注解模板、vault 内 skill 模板
+  assets/                      vault.yaml、注解与 vault 内 skill 模板，写回路径图（源+SVG）
   evals/evals.json             三条测试提示
-docs/                          架构图与 GEO 审计
+docs/
+  architecture.svg             总体关系图（Pele 渲染，源在 diagrams/）
+  round-trip.svg               封口往返流水线（Pele 渲染，源在 diagrams/）
+  diagrams/*.mmd               所有图的 Mermaid 源，与产物一起提交
+  GEO-ANALYSIS.md              GEO 自审
 ```
 
 ## 维护与更新
@@ -190,6 +196,19 @@ python skills/obsidian-kglite/scripts/check_upstream.py
 ```
 
 漂移出现时重新内联对应段落，并更新文件头的 `upstream-sha256`，两件事放在同一次提交里。
+
+## 图源与渲染
+
+仓库里的图都是 Mermaid 源 + Pele 渲染产物，两者一起提交，改图改源不手改 SVG：
+
+```bash
+cd ~/.agents/skills/run-pele          # Pele 1.10.0，按锁文件安装
+node scripts/render.mjs REPO/docs/diagrams/architecture.mmd REPO/docs/architecture.svg --theme auto --max-width 900 --force
+node scripts/render.mjs REPO/docs/diagrams/round-trip.mmd   REPO/docs/round-trip.svg   --theme auto --force
+node scripts/render.mjs REPO/skills/obsidian-kglite/assets/writeback-paths.mmd REPO/skills/obsidian-kglite/assets/writeback-paths.svg --theme auto --force
+```
+
+`--theme auto` 让 SVG 自带明暗两套 CSS，嵌在 GitHub 的 `<img>` 里也能跟随系统主题；`--check` 只校验不写文件，适合放进 CI。
 
 ## 许可与致谢
 

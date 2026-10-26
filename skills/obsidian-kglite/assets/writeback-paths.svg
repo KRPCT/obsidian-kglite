@@ -1,0 +1,36 @@
+<svg data-theme="auto" xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="0 0 634 356" width="634" height="356" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_r:var(--pele-radius,4px);--_tw:var(--pele-title-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart" aria-labelledby="wb-1-title" aria-describedby="wb-1-desc"><style>.pele {
+  --pele-bg: #ffffff;
+  --pele-fg: #1f1f1f;
+  --pele-muted: #6e6e6e;
+  --pele-line: #1f1f1f;
+  --pele-surface: #f3f3f3;
+  --pele-surface-alt: #e6e6e6;
+  --pele-border: #8a8a8a;
+  --pele-accent: #5b7bd5;
+  --pele-critical: #e45756;
+  --pele-error: #e45756;
+  background: var(--pele-bg);
+}
+.pele[data-theme="dark"] {
+  --pele-bg: #17191c;
+  --pele-fg: #e7e9ec;
+  --pele-muted: #a8aeb7;
+  --pele-line: #c4cad2;
+  --pele-surface: #252930;
+  --pele-surface-alt: #30363e;
+  --pele-border: #818b99;
+  --pele-accent: #93b7ff;
+}
+@media (prefers-color-scheme: dark) {
+  .pele[data-theme="auto"] {
+    --pele-bg: #17191c;
+    --pele-fg: #e7e9ec;
+    --pele-muted: #a8aeb7;
+    --pele-line: #c4cad2;
+    --pele-surface: #252930;
+    --pele-surface-alt: #30363e;
+    --pele-border: #818b99;
+    --pele-accent: #93b7ff;
+  }
+}
+</style><title id="wb-1-title">three write-back paths</title><desc id="wb-1-desc">Canvas and the skipped backlinks index leave every graph count unchanged. A sealed export produces a new vault tree and leaves the source vault untouched.</desc><text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve"><tspan x="317" y="25.6">three write-back paths</tspan></text><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="pele-edge" data-id="L_kg_canvas_0"><path d="M269.13,92C269.13,114.75 85.97,114.75 85.97,137.5L85.97,143.5"/><path class="pele-marker" d="M85.97,150.5L82.61,142.5L89.33,142.5Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_kg_bl_0"><path d="M285.13,92L285.13,133"/><path class="pele-marker" d="M285.13,140L281.77,132L288.49,132Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_kg_exp_0"><path d="M301.13,92C301.13,114.75 517.19,114.75 517.19,137.5L517.19,143.5"/><path class="pele-marker" d="M517.19,150.5L513.83,142.5L520.55,142.5Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_canvas_v1_0"><path d="M85.97,216.5L85.97,293"/><path class="pele-marker" d="M85.97,300L82.61,292L89.33,292Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_bl_v2_0"><path d="M285.13,227L285.13,293"/><path class="pele-marker" d="M285.13,300L281.77,292L288.49,292Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge" data-id="L_exp_v3_0"><path d="M517.19,216.5L517.19,293"/><path class="pele-marker" d="M517.19,300L513.83,292L520.55,292Z" fill="var(--_l)" stroke="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="L_canvas_v1_0"><rect x="10" y="249.5" width="151.95" height="21" rx="3" fill="var(--_bg)"/><text x="85.97" y="264.9" text-anchor="middle">canvas is never parsed</text></g><g class="pele-edge-label" data-id="L_bl_v2_0"><rect x="243.4" y="249.5" width="83.47" height="21" rx="3" fill="var(--_bg)"/><text x="285.13" y="264.9" text-anchor="middle">kg_skip true</text></g><g class="pele-edge-label" data-id="L_exp_v3_0"><rect x="426.81" y="249.5" width="180.76" height="21" rx="3" fill="var(--_bg)"/><text x="517.19" y="264.9" text-anchor="middle">new tree, source untouched</text></g></g><g class="pele-nodes"><g class="pele-node pele-shape-rect" data-id="kg" transform="translate(285.13,68)"><rect x="-53.13" y="-24" width="106.26" height="48" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">.kgl graph</text></g><g class="pele-node pele-shape-rect same" data-id="canvas" transform="translate(85.97,183.5)"><rect x="-75.36" y="-33" width="150.72" height="66" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r);fill:#e8f5e9;stroke:#2e7d32;"/><text class="pele-label" style="fill:#1b5e20;" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-4.9">vault_canvas.py</tspan><tspan x="0" y="16.1">Graph.canvas</tspan></text></g><g class="pele-node pele-shape-rect same" data-id="bl" transform="translate(285.13,183.5)"><rect x="-83.8" y="-43.5" width="167.6" height="87" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r);fill:#e8f5e9;stroke:#2e7d32;"/><text class="pele-label" style="fill:#1b5e20;" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-15.4">vault_writeback.py</tspan><tspan x="0" y="5.6">backlinks</tspan><tspan x="0" y="26.6">Backlinks.md</tspan></text></g><g class="pele-node pele-shape-rect new" data-id="exp" transform="translate(517.19,183.5)"><rect x="-108.26" y="-33" width="216.51" height="66" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r);fill:#fff3e0;stroke:#e65100;"/><text class="pele-label" style="fill:#bf360c;" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-4.9">vault_writeback.py export</tspan><tspan x="0" y="16.1">sealed tree</tspan></text></g><g class="pele-node pele-shape-rect same" data-id="v1" transform="translate(85.97,324)"><rect x="-76.7" y="-24" width="153.41" height="48" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r);fill:#e8f5e9;stroke:#2e7d32;"/><text class="pele-label" style="fill:#1b5e20;" x="0" y="5.6" text-anchor="middle">vault unchanged</text></g><g class="pele-node pele-shape-rect same" data-id="v2" transform="translate(285.13,324)"><rect x="-76.7" y="-24" width="153.41" height="48" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r);fill:#e8f5e9;stroke:#2e7d32;"/><text class="pele-label" style="fill:#1b5e20;" x="0" y="5.6" text-anchor="middle">vault unchanged</text></g><g class="pele-node pele-shape-rect new" data-id="v3" transform="translate(517.19,324)"><rect x="-51.79" y="-24" width="103.58" height="48" fill="var(--_s)" stroke="var(--_b)" style="rx:var(--_r);fill:#fff3e0;stroke:#e65100;"/><text class="pele-label" style="fill:#bf360c;" x="0" y="5.6" text-anchor="middle">new vault</text></g></g></svg>
