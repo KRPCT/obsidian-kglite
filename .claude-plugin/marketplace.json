@@ -7,8 +7,8 @@
     {
       "name": "obsidian-kglite",
       "source": "./",
-      "description": "Obsidian vault to KGLite knowledge graph: measure, repair, serve.",
-      "version": "1.0.0"
+      "description": "Obsidian vault to KGLite knowledge graph: measure, repair, serve, write back.",
+      "version": "1.1.0"
     }
   ]
 }

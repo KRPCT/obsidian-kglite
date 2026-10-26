@@ -23,6 +23,7 @@
 - 新增「中文术语与图模型对照」表，把用户口语（孤儿笔记、断链、双链、章节、段落块）映射到图对象与查询入口，既服务中文读者，也让 agent 的检索词有落点。
 - 图改为图源驱动：`docs/diagrams/*.mmd` 与 skill `assets/*.mmd` 是可编辑源，SVG 由 Pele 1.10.0 渲染并一起提交；总体关系图展示双向读写，往返流水线图展示封口步骤，写回路径图展示三条机制的副作用。改图改源，不手改 SVG。
 - `SKILL.md` 的 description 改为中英双语触发词，覆盖"知识图谱/双链/断链/孤儿笔记"等中文说法；正文加入同一张术语对照表。
+- 补齐图到 vault 的写回能力（canvas、`kg_skip` 索引、sealed 导出）与七项往返检查，事实表相应加入三条可复现数字：canvas 零影响、索引幂等、往返 5 篇笔记与 5 条语义边原样返回。
 
 ## 3. 平台就绪度（未测量）
 
@@ -76,13 +77,14 @@ Google 的 AI 优化指南明确说明 `llms.txt` 对 Google 搜索既不帮助�
 
 不适用。GitHub 在服务端把 README 渲染成 HTML，页面主体不依赖 JavaScript；同时 `raw.githubusercontent.com/KRPCT/obsidian-kglite/main/README.md` 返回纯文本。两条路径都不需要执行脚本。
 
-## 9. 影响最大的五处改动
+## 9. 影响最大的六处改动
 
 1. 默认 README 改中文并在首屏给定义，英文版保留为 `README.en.md`（已做）。
 2. 加入可复现的原创数字（fixture 构建、真实 vault 冲突、漂移检查），替代泛泛的"强大/高效"（已做）。
 3. FAQ 用用户原句提问，答案自足（已做）。
 4. description 与 topics 覆盖中英检索词（description 已改中文，topics 保留英文 slug，因为 GitHub topics 不支持中文标点习惯）（已做）。
 5. 建立"最后验证日期 + 适用版本"的刷新机制，随每次验证更新（已做：两份 README 顶部与 SOURCES.md）。
+6. 图改为图源驱动（Mermaid + Pele 1.10.0），三张图覆盖读写双向、封口往返与写回副作用；多模态分因此从 8 提到 11（已做）。
 
 ## 10. Schema 建议
 
@@ -90,7 +92,7 @@ GitHub 不给仓库页注入 JSON-LD 的入口，因此 Article / SoftwareApplic
 
 ## 11. 仍需重排的内容
 
-- 三篇长 references（`VAULT-FORMAT.md` 507 行、`CYPHER-COOKBOOK.md` 359 行）面向 agent 阅读，不追求网页段落长度；不为 GEO 强行拆分，避免破坏可查性。
+- 四篇长 references（`VAULT-FORMAT.md` 507 行、`CYPHER-COOKBOOK.md` 409 行、`WRITEBACK.md` 146 行、`SERVING.md` 152 行）面向 agent 阅读，不追求网页段落长度；不为 GEO 强行拆分，避免破坏可查性。
 - README 的"工作原理"一节可以再补一条失败路径（构建失败时会发生什么），目前只在 SKILL.md 的失败模式表里。
 - 英文版缺少中文版里的术语对照表；若英文读者增长，再补一份英文术语表。
 

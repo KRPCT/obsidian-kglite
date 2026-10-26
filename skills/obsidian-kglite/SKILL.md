@@ -6,7 +6,7 @@ description: Build a KGLite knowledge graph from an Obsidian vault and answer qu
 # Obsidian → KGLite
 
 An Obsidian vault is a directory of frontmatter-markdown notes. KGLite reads it as a
-property graph and writes it back out again. Every task below is one of two things:
+property graph and writes it back out again. Every task below is one of three things:
 
 1. **Measure** — ask what the vault cannot answer by eye: orphans, dangling links, hub
    inflation, duplicate stems, which section mentions what, which table row carries
@@ -288,6 +288,11 @@ A result is trustworthy only when all of these hold:
 | `references/SOURCES.md` | provenance, verified-vs-documented status |
 | `scripts/vault_graph.py` | path-safe wrapper for check/build/status/query/export |
 | `scripts/vault_report.py` | Markdown health report from the Python API |
+| `scripts/vault_canvas.py` | `Graph.canvas` or a Mermaid note; never touches the graph |
+| `scripts/vault_writeback.py` | skipped backlinks index, and `okf export` with the CLI resolved |
+| `scripts/vault_roundtrip.py` | sealed export, seven checks, documented losses |
 | `scripts/check_upstream.py` | are the inlined Obsidian skills stale? |
+| `scripts/install_local.py` | deploy the skill into a skills directory |
 | `assets/vault.yaml` | starting declaration file |
 | `assets/note-annotations.md` | template showing all five annotations |
+| `assets/writeback-paths.mmd` / `.svg` | write-back diagram, source and rendered output |

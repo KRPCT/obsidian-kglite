@@ -171,18 +171,20 @@ skills/obsidian-kglite/
     CYPHER-COOKBOOK.md         按问题分组的查询，每条都执行过
     ANNOTATIONS.md             五种注解与读回它们的查询
     LINK-GRAPH.md              链接修复协议：两信号规则与反模式
+    WRITEBACK.md               图到 vault：canvas、跳过索引、封口导出、往返检查
     SERVING.md                 MCP、.kglite/skills、.kglite/recipes、输出预算
     OBSIDIAN-CLI.md            内联的 Obsidian CLI 参考（随上游校验）
     OBSIDIAN-MARKDOWN.md       内联的 Obsidian Markdown 要点（随上游校验）
     SOURCES.md                 来源、版本、已验证与仅文档的边界
   scripts/                     七个脚本：封装、健康报告、漂移检查、本地部署、canvas、写回、往返校验
   assets/                      vault.yaml、注解与 vault 内 skill 模板，写回路径图（源+SVG）
-  evals/evals.json             三条测试提示
+  evals/evals.json             四条测试提示
 docs/
   architecture.svg             总体关系图（Pele 渲染，源在 diagrams/）
   round-trip.svg               封口往返流水线（Pele 渲染，源在 diagrams/）
   diagrams/*.mmd               所有图的 Mermaid 源，与产物一起提交
   GEO-ANALYSIS.md              GEO 自审
+scripts/check_docs.py          文档一致性检查：链接、引用、计数、图源、版本
 ```
 
 ## 维护与更新
@@ -193,6 +195,9 @@ python skills/obsidian-kglite/scripts/install_local.py --force
 
 # 检查内联的 Obsidian 材料是否落后于上游
 python skills/obsidian-kglite/scripts/check_upstream.py
+
+# 文档一致性：链接、SKILL.md 引用表、计数、图源、插件版本
+python scripts/check_docs.py
 ```
 
 漂移出现时重新内联对应段落，并更新文件头的 `upstream-sha256`，两件事放在同一次提交里。

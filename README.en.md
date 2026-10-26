@@ -90,7 +90,14 @@ skills/obsidian-kglite/
     vault.yaml                 starter .kglite/vault.yaml
     note-annotations.md        template showing all five annotations
     skill-for-vault.md         template for .kglite/skills/
-  evals/evals.json             prompts the skill is expected to handle
+    writeback-paths.mmd/.svg   write-back diagram, source and rendered output
+  evals/evals.json             four prompts the skill is expected to handle
+docs/
+  architecture.svg             overall relationship diagram (Pele-rendered, source in diagrams/)
+  round-trip.svg               sealed round trip pipeline (Pele-rendered, source in diagrams/)
+  diagrams/*.mmd               Mermaid sources for every figure, committed with the output
+  GEO-ANALYSIS.md              GEO self-audit
+scripts/check_docs.py          documentation consistency: links, coverage, counts, figure sources, versions
 ```
 
 ## Graph → vault: the other half of the loop
@@ -182,6 +189,7 @@ Nowhere. kglite is an embedded local engine; the MCP server binds locally by def
 ```bash
 python skills/obsidian-kglite/scripts/check_upstream.py          # exit 1 on drift
 python skills/obsidian-kglite/scripts/check_upstream.py --update  # print the hash to paste
+python scripts/check_docs.py                                     # links, coverage, counts, figure sources
 ```
 
 Re-inline the changed sections, update `upstream-sha256` in the reference header, and commit both

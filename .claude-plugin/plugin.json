@@ -1,7 +1,7 @@
 {
   "name": "obsidian-kglite",
-  "version": "1.0.0",
-  "description": "Build a KGLite knowledge graph from an Obsidian vault: measure the graph, repair links with evidence, serve it to an agent.",
+  "version": "1.1.0",
+  "description": "Build a KGLite knowledge graph from an Obsidian vault: measure the graph, repair links with evidence, serve it to an agent, and write it back as a canvas, a skipped index or a sealed export.",
   "author": {
     "name": "KRPCT"
   },
@@ -15,6 +15,7 @@
     "pkm",
     "notes",
     "backlinks",
-    "vault"
+    "vault",
+    "roundtrip"
   ]
 }

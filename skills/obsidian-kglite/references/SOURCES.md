@@ -61,6 +61,20 @@ Specific behaviours verified, because they change how you write a query or a scr
 - Querying a label or relationship type the graph lacks produces a **warning**, not an error, and zero
   rows.
 
+```text
+vault_canvas.py     → 5 notes, 5 semantic edges, 1 stub; every graph node/edge count unchanged
+vault_writeback.py  → Backlinks.md written with kg_skip: true; a second run is byte-identical
+vault_roundtrip.py  → PASS on all seven checks; 5 notes and 5 semantic edges return
+```
+
+- A canvas and the skipped index are invisible to the graph: `okf check` fingerprints before and after
+  are identical (measured on the fixture).
+- An export writes a frontmatter list for an edge whose type came from `heading_edges`, because its
+  prose scanner lacks that declaration; rebuilding then sees the relationship twice. Sealing removes the
+  duplicated key.
+- `okf export` re-files notes under `<Label>/` and reports `edge properties dropped` for types without
+  `export.edge_tables`.
+
 ## Documented only
 
 These are stated by the docs and used as guidance here, but were not exercised on this machine:
@@ -75,5 +89,7 @@ These are stated by the docs and used as guidance here, but were not exercised o
   bound.
 - `--response-max-bytes` / `response expand` output shape (only the unbounded agent envelope was
   observed).
+- Round-tripping edge **properties** through `export.edge_tables` plus a `structure.tables … edges: true`
+  rule — the loss is reproduced here, the recovery path is not.
 
 If a task depends on one of those, run it once before promising it.
