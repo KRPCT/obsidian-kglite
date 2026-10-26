@@ -1,0 +1,20 @@
+{
+  "name": "obsidian-kglite",
+  "version": "1.0.0",
+  "description": "Build a KGLite knowledge graph from an Obsidian vault: measure the graph, repair links with evidence, serve it to an agent.",
+  "author": {
+    "name": "KRPCT"
+  },
+  "repository": "https://github.com/KRPCT/obsidian-kglite",
+  "license": "MIT",
+  "keywords": [
+    "obsidian",
+    "knowledge-graph",
+    "kglite",
+    "cypher",
+    "pkm",
+    "notes",
+    "backlinks",
+    "vault"
+  ]
+}

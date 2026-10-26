@@ -1,0 +1,20 @@
+{
+  "skill_name": "obsidian-kglite",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "My Obsidian vault has a lot of notes and I suspect some are unreachable. Build a graph from /path/to/vault and tell me which notes have no meaningful links, then show me how you would fix three of them.",
+      "expected_output": "A check+build sequence with the graph kept outside the vault, an orphan query using file_path IS NOT NULL, a list of orphan note ids, and three link proposals each carrying its evidence query and row."
+    },
+    {
+      "id": 2,
+      "prompt": "Why does every link in my vault come out as LINKS_TO even though I wrote them under headings like 'Related topics' and 'Dependencies'?",
+      "expected_output": "An explanation of the edge-type ladder (brace, link title, heading_edges, built-in substring ladder), why structure/heading_edges declarations are needed, and the concrete fix plus the query to verify the retyping."
+    },
+    {
+      "id": 3,
+      "prompt": "Turn this vault into something another agent can query over MCP, and give it three canned questions it can call directly.",
+      "expected_output": "A --vault or --graph server command, a .kglite/recipes/ file per canned question with a valid parameters schema, the LIMIT 200 rule respected, and the restart-vs-rebuild lifecycle explained."
+    }
+  ]
+}

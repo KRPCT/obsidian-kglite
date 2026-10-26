@@ -1,0 +1,14 @@
+{
+  "name": "obsidian-kglite",
+  "owner": {
+    "name": "KRPCT"
+  },
+  "plugins": [
+    {
+      "name": "obsidian-kglite",
+      "source": "./",
+      "description": "Obsidian vault to KGLite knowledge graph: measure, repair, serve.",
+      "version": "1.0.0"
+    }
+  ]
+}

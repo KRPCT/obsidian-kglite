@@ -1,0 +1,37 @@
+# .kglite/vault.yaml — starter declaration for a converted corpus.
+# Copy to VAULT/.kglite/vault.yaml. Every key here is optional; the file is re-applied on every rebuild.
+kglite_vault: 1
+
+# Do NOT set default_label in a vault whose folders are its labels: it sits at rung 2 of the label
+# ladder and would relabel the entire vault. Set it only when the notes really are one kind.
+# default_label: Article
+
+folder_notes:
+  edge: CHILD_OF
+  direction: child_to_parent
+
+structure:
+  sections: {label: Section, edge: HAS_SECTION, parent: PARENT_SECTION, next: NEXT_SECTION}
+  chunks: {label: Chunk, edge: HAS_CHUNK, next: NEXT_CHUNK, max_words: 650, max_chars: 6000}
+  callouts: {label: Note, edge: HAS_NOTE}
+  code_fences: {label: Example, edge: HAS_EXAMPLE}          # add langs: [python] once fences are labelled
+  ordered_lists: {label: ProcedureStep, container: Procedure, edge: HAS_STEP, next: NEXT_STEP}
+  tables:
+    - {under_heading: '^Parameters$', label: ApiParameter, key_column: name, edge: HAS_PARAMETER}
+    - {under_heading: '^Returns$', label: ApiReturn, key_column: name, edge: HAS_RETURN}
+  key_from_heading: {label: ApiSymbol, property: qualified_name, under_label: Api}
+  inherit: [corpus, category]
+  embed_text: "{title} | {heading_path}\n\n{text}"
+
+heading_edges:
+  "Related topics": RELATED_TO
+
+tag_labels:
+  "intent/*": {label: Intent, edge: HAS_INTENT}
+
+text_indexes:
+  Chunk: [embed_text]
+  ProcedureStep: [text]
+
+embed:
+  Chunk: embed_text

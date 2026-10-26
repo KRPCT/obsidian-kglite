@@ -1,0 +1,6 @@
+# Keep the repository platform-neutral: the skill is markdown and Python, and a CRLF checkout
+# would make the inlined upstream hashes and any byte comparison platform-dependent.
+* text=auto eol=lf
+*.kgl binary
+*.png binary
+*.jpg binary
