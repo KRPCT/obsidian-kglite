@@ -67,6 +67,11 @@ def main() -> int:
     for script_path in sorted((SKILL / "scripts").glob("*.py")):
         if f"scripts/{script_path.name}" not in skill_md:
             problems.append(f"SKILL.md reference map omits {script_path.name}")
+    for asset in sorted((SKILL / "assets").iterdir()):
+        if asset.suffix in {".mmd", ".svg"}:
+            continue  # covered through the .mmd row that names both files
+        if f"assets/{asset.name}" not in skill_md:
+            problems.append(f"SKILL.md reference map omits assets/{asset.name}")
 
     scripts = sorted((SKILL / "scripts").glob("*.py"))
     references = sorted((SKILL / "references").glob("*.md"))

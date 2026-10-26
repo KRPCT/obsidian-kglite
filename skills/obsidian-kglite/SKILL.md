@@ -296,3 +296,4 @@ A result is trustworthy only when all of these hold:
 | `assets/vault.yaml` | starting declaration file |
 | `assets/note-annotations.md` | template showing all five annotations |
 | `assets/writeback-paths.mmd` / `.svg` | write-back diagram, source and rendered output |
+| `assets/skill-for-vault.md` | template for a skill that lives inside `.kglite/skills/` |
