@@ -15,6 +15,7 @@ obsidian-kglite 让 agent 用 Cypher 回答关于笔记、反向链接、标签�
 | 度量 | 孤儿笔记、断链、重复词干、标签枢纽、章节与段落统计 | `okf check` 报告与 Cypher 结果 |
 | 修复 | 以证据为前置条件提出加链建议，改完复测同一组指标 | 可回滚的单条笔记修改 |
 | 服务 | 把图谱以 MCP 暴露，技能与参数化查询随 vault 一起分发 | `kglite-mcp-server` 与 `.kglite/recipes` |
+| 写回 | 把图变成 Obsidian 能看的关系图、反向链接索引，或整份可核对的导出 | `.canvas`、`Backlinks.md`、sealed export |
 
 ## 快速开始
 
@@ -70,6 +71,41 @@ cp -r obsidian-kglite/skills/obsidian-kglite ~/.agents/skills/
 4. 在 `.kglite/vault.yaml` 里声明 `structure:` 后，标题变成 Section、段落包成 Chunk、callout 变成 Note、编号列表变成 Procedure 与 ProcedureStep、表格每行成为一个节点。
 5. 之后所有问题都用 Cypher 问，改完笔记再跑一次 `check` 与 `status`。
 
+## 双向链路：从图谱写回 Obsidian
+
+只读图谱只解决一半问题。另一半是让图回到 Obsidian 里，让读者看见关系，同时不污染被测的图。三条路径副作用不同，按需要选：
+
+| 目标 | 命令 | 写进 vault 的东西 | 下次构建的影响 |
+| --- | --- | --- | --- |
+| 在 Obsidian 里看关系图 | `python scripts/vault_canvas.py VAULT` | `Graph.canvas` | 无（canvas 不被解析） |
+| 看每篇笔记的入链与出链 | `python scripts/vault_writeback.py backlinks VAULT` | `Backlinks.md` | 无（`kg_skip: true`） |
+| 迁移或重构整份 vault | `python scripts/vault_writeback.py export G OUT --source-root VAULT` | 一棵新树，不覆盖原地 | 那棵树是新的 vault |
+| 改某一条链接 | Obsidian CLI 或直接编辑文件 | 笔记本体 | 会变，这是设计 |
+
+两条让往返可信的规则：
+
+- **先补声明，再去重。** 导出不写 `.kglite/vault.yaml`；而 `heading_edges` 声明的类型，导出器用它自己的散文扫描器复现不出来，于是会写一条 frontmatter 列表，下次构建就多出同一条关系。`scripts/vault_roundtrip.py` 把「复制声明」和「删掉重复的 frontmatter 键」都做掉，然后再证明结果。
+- **不要往被扫描的笔记里追加生成的链接。** 写在笔记里的反向链接就是真实的边，每跑一次都会改变生成它的那份报告。一篇 `kg_skip` 索引笔记承载同样的信息，并且有不动点。
+
+```bash
+python scripts/vault_roundtrip.py VAULT
+```
+
+```text
+round trip: PASS
+  ok   export_deterministic
+  ok   note_set_preserved
+  ok   bodies_preserved
+  ok   semantic_edges_preserved
+  ok   dangling_links_preserved
+  ok   fixed_point
+  ok   structure_rebuilt
+  notes 5 -> 5; semantic edges 5 -> 5
+  seal removed 1 duplicated frontmatter key(s) in 1 file(s); declarations copied: vault.yaml
+```
+
+双向关系本身就用两条查询表达：入链与出链度数、以及互为链接的配对（`references/CYPHER-COOKBOOK.md` 第 3 节）。写回机制、失败模式与「哪些东西永远留在 vault 里」见 `references/WRITEBACK.md`。
+
 ## 已验证的事实
 
 下面这些数字来自本仓库的验证运行，可复现（详见 `skills/obsidian-kglite/references/SOURCES.md`）。
@@ -80,6 +116,9 @@ cp -r obsidian-kglite/skills/obsidian-kglite ~/.agents/skills/
 | 同一 fixture 上的孤儿笔记 | 1 篇（无任何语义边） | 孤儿查询 |
 | 一个真实的 26 篇笔记 vault | 抓出 14 篇 `README` 词干冲突（构建期 error），1 处断链 | `okf check` 输出 |
 | 内联上游材料的漂移检查 | 两篇文件均为 `CURRENT` | `check_upstream.py` |
+| 写回 canvas 后的图 | 节点与边计数完全不变（canvas 不被解析） | 写回前后 `okf check` |
+| 反向链接索引重跑 | 文件字节相同（幂等），图计数不变 | `vault_writeback.py` 两次运行 |
+| sealed 导出往返 | 7 项检查全过，5 篇笔记与 5 条语义边原样回来 | `vault_roundtrip.py` |
 
 ## 常见问题
 
@@ -134,7 +173,7 @@ skills/obsidian-kglite/
     OBSIDIAN-CLI.md            内联的 Obsidian CLI 参考（随上游校验）
     OBSIDIAN-MARKDOWN.md       内联的 Obsidian Markdown 要点（随上游校验）
     SOURCES.md                 来源、版本、已验证与仅文档的边界
-  scripts/                     四个脚本：封装、健康报告、漂移检查、本地部署
+  scripts/                     七个脚本：封装、健康报告、漂移检查、本地部署、canvas、写回、往返校验
   assets/                      vault.yaml 起始配置、注解模板、vault 内 skill 模板
   evals/evals.json             三条测试提示
 docs/                          架构图与 GEO 审计

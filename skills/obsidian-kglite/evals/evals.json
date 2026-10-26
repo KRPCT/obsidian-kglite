@@ -15,6 +15,11 @@
       "id": 3,
       "prompt": "Turn this vault into something another agent can query over MCP, and give it three canned questions it can call directly.",
       "expected_output": "A --vault or --graph server command, a .kglite/recipes/ file per canned question with a valid parameters schema, the LIMIT 200 rule respected, and the restart-vs-rebuild lifecycle explained."
+    },
+    {
+      "id": 4,
+      "prompt": "I want the link graph visible inside Obsidian itself, and I also want to be able to push changes from the graph back into the vault without breaking my notes. How do I prove the round trip is lossless?",
+      "expected_output": "A choice between canvas (never parsed), a kg_skip backlinks index (idempotent, no feedback), and a sealed export; the sealed pipeline copies .kglite/vault.yaml and removes frontmatter keys the body already states; vault_roundtrip.py is run and its seven checks plus the documented edge-property loss are explained."
     }
   ]
 }

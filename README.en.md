@@ -73,12 +73,16 @@ skills/obsidian-kglite/
     CYPHER-COOKBOOK.md         queries by question, each one executed
     ANNOTATIONS.md             the five in-note annotations and the queries that read them
     LINK-GRAPH.md              link-repair protocol: two-signal rule, anti-sprawl checks
+    WRITEBACK.md               graph-to-vault: canvas, skipped index, sealed export, round-trip checks
     SERVING.md                 MCP server, .kglite/skills, .kglite/recipes, output budgets
     OBSIDIAN-CLI.md            inlined Obsidian CLI reference (upstream-synced)
     OBSIDIAN-MARKDOWN.md       inlined Obsidian markdown essentials (upstream-synced)
     SOURCES.md                 provenance, verified vs documented-only
   scripts/
     vault_graph.py             path-safe CLI wrapper
+    vault_canvas.py            Graph.canvas / Mermaid view, zero graph impact
+    vault_writeback.py         backlinks index (kg_skip) and sealed export
+    vault_roundtrip.py         export/build/export proof with reconciliation
     vault_report.py            Markdown health report
     check_upstream.py          drift check for the inlined Obsidian material
     install_local.py           deploy this skill into a skills directory
@@ -88,6 +92,37 @@ skills/obsidian-kglite/
     skill-for-vault.md         template for .kglite/skills/
   evals/evals.json             prompts the skill is expected to handle
 ```
+
+## Graph → vault: the other half of the loop
+
+A read-only graph answers half the question. The other half is getting the graph back into Obsidian
+where a reader can see it — without poisoning the graph being measured. Three mechanisms, three blast
+radii:
+
+| Goal | Command | Writes | Next build |
+| --- | --- | --- | --- |
+| see the relationship graph in Obsidian | `scripts/vault_canvas.py VAULT` | `Graph.canvas` | unchanged (canvas is never parsed) |
+| per-note inbound/outbound lists | `scripts/vault_writeback.py backlinks VAULT` | `Backlinks.md` | unchanged (`kg_skip: true`) |
+| migrate or restructure | `scripts/vault_writeback.py export G OUT --source-root VAULT` | a new tree | that tree is a new vault |
+| change one link | Obsidian CLI or a file edit | the note | changes, by design |
+
+Two rules keep a round trip honest:
+
+- **Copy the declarations, then seal the duplicates.** An export does not write `.kglite/vault.yaml`, and
+  for a `heading_edges` type it writes a frontmatter list its prose scanner cannot match later — so the
+  next build sees that relationship twice. `scripts/vault_roundtrip.py` does both steps and proves the
+  result.
+- **Never append generated links into scanned notes.** Backlinks inside a note become real edges, so each
+  run changes the report that produced it. One `kg_skip` index note carries the same information and has
+  a fixed point.
+
+```bash
+python scripts/vault_roundtrip.py VAULT     # expect: round trip: PASS, seven ok lines
+```
+
+Bidirectional relations themselves are two queries — in/out degree and reciprocal pairs — in
+`references/CYPHER-COOKBOOK.md` section 3. Mechanisms and failure modes are in
+`references/WRITEBACK.md`.
 
 ## Verified facts
 
@@ -100,6 +135,9 @@ Numbers below come from this repository's own verification run and are reproduci
 | Orphan notes in that fixture | 1 (no semantic edge at all) | orphan query |
 | A real 26-note vault | 14 notes colliding on the stem `README` (build-time error), 1 dangling link | `okf check` output |
 | Drift check of the inlined upstream material | both files `CURRENT` | `check_upstream.py` |
+| Graph after writing a canvas back | every node and edge count unchanged (canvas is not parsed) | `okf check` before/after |
+| Re-running the backlinks index | byte-identical file, graph counts unchanged | two `vault_writeback.py` runs |
+| Sealed export round trip | all seven checks pass; 5 notes and 5 semantic edges return intact | `vault_roundtrip.py` |
 
 ## FAQ
 

@@ -157,6 +157,57 @@ ORDER BY strength DESC LIMIT 20
 Add a second signal (shared tag, unlinked mention, folder sibling) before proposing anything; the
 proposal protocol is in `LINK-GRAPH.md`.
 
+### 双向视图：入链、出链、互为链接
+
+A "bidirectional link" in Obsidian is two things at once: an outbound edge written in the prose and the
+inbound edge every other note sees in its backlink panel. The graph stores one directed edge, so both
+views are queries over the same edge, plus a check for reciprocity.
+
+```cypher
+// in/out degree per note, structural edges excluded
+MATCH (n) WHERE n.file_path IS NOT NULL AND NOT coalesce(n._provisional,false)
+OPTIONAL MATCH (n)-[out]->(m)
+  WHERE m.file_path IS NOT NULL AND NOT type(out) IN ['CHILD_OF','CONTAINS','TAGGED']
+OPTIONAL MATCH (n)<-[inn]-(k)
+  WHERE k.file_path IS NOT NULL AND NOT type(inn) IN ['CHILD_OF','CONTAINS','TAGGED']
+WITH n, count(DISTINCT out) AS out_n, count(DISTINCT inn) AS in_n
+RETURN n.concept_id AS id, in_n, out_n, in_n + out_n AS degree
+ORDER BY degree DESC, id
+```
+
+```cypher
+// reciprocal pairs: A links to B and B links back, whatever the types
+MATCH (a)-[r1]->(b), (b)-[r2]->(a)
+WHERE a.file_path IS NOT NULL AND b.file_path IS NOT NULL
+  AND a.concept_id < b.concept_id
+RETURN a.concept_id AS a, b.concept_id AS b, type(r1) AS a_to_b, type(r2) AS b_to_a
+ORDER BY a, b, a_to_b
+```
+
+```cypher
+// one-way links: worth a second look, not automatically a defect
+MATCH (a)-[r]->(b)
+WHERE a.file_path IS NOT NULL AND b.file_path IS NOT NULL AND NOT (b)-[]->(a)
+RETURN a.concept_id AS src, type(r) AS type, b.concept_id AS dst
+ORDER BY src, dst
+```
+
+```cypher
+// which combinations actually occur (is DEPENDS_ON ever answered by JOINS_WITH?)
+MATCH (a)-[r1]->(b)-[r2]->(a)
+WHERE a.file_path IS NOT NULL AND b.file_path IS NOT NULL
+RETURN type(r1) AS forward, type(r2) AS back, count(*) AS pairs
+ORDER BY pairs DESC
+```
+
+Two things these queries are not: proof of intent, and a reason to add links. Reciprocal does not mean
+correct (a table of contents and a topic page often link both ways for different reasons), and one-way
+does not mean broken. Use them as the evidence step in `LINK-GRAPH.md`, with the two-signal rule.
+
+To *show* the same relations inside Obsidian rather than in a shell, export a canvas or the skipped
+backlinks index: `scripts/vault_canvas.py` and `scripts/vault_writeback.py backlinks`, documented in
+`WRITEBACK.md`.
+
 ## 4. Section tree
 
 ```cypher

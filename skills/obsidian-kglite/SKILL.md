@@ -13,6 +13,9 @@ property graph and writes it back out again. Every task below is one of two thin
    which fact.
 2. **Repair** — act on those measurements with evidence, then re-measure. Editing the
    vault stays a deliberate, reviewable step; the graph never edits itself.
+3. **Write back** — put the graph back into Obsidian where a reader can see it: a canvas view, a
+   skipped backlinks index, or a sealed export. Each has a different blast radius and none of them
+   rewrites human prose.
 
 The vault stays the source of truth. The graph is a rebuildable lens, and building one
 never writes into the vault.
@@ -191,6 +194,33 @@ form:
 6. **Re-measure** — the same queries must move in the direction claimed. If they do not,
    revert and report the null result instead of adding more links.
 
+## Graph → vault
+
+Reading is the easy direction. Writing back has three mechanisms with three different blast radii, and
+choosing the wrong one is how a tool corrupts the vault it was measuring. Full detail in
+`references/WRITEBACK.md`.
+
+| Goal | Command | Writes | Next build |
+| --- | --- | --- | --- |
+| see the graph in Obsidian | `scripts/vault_canvas.py VAULT --graph G` | `Graph.canvas` | unchanged (canvas is never parsed) |
+| per-note inbound/outbound lists | `scripts/vault_writeback.py backlinks VAULT --graph G` | `Backlinks.md` | unchanged (`kg_skip: true`) |
+| migrate or restructure | `scripts/vault_writeback.py export G OUT --source-root VAULT` | a new tree | that tree is a new vault |
+| change one link | Obsidian CLI or a file edit | the note | changes by design |
+
+Two rules that keep a round trip honest:
+
+- **Copy the declarations, then seal the duplicates.** An export does not write `.kglite/vault.yaml`, and
+  it writes a frontmatter list for an edge whose declared type (`heading_edges`) its prose scanner
+  cannot reproduce — so the next build sees that relationship twice. `scripts/vault_roundtrip.py`
+  does both steps and then proves the result.
+- **Never append generated links into notes that are scanned.** A backlinks block inside a note becomes
+  real edges, so every run changes the report that produced it. One `kg_skip` index note carries the
+  same information and has a fixed point.
+
+```bash
+python scripts/vault_roundtrip.py VAULT      # expect: round trip: PASS, seven ok lines
+```
+
 ## Serving the vault to an agent
 
 ```bash
@@ -223,6 +253,11 @@ kglite-mcp-server --vault VAULT                   # owns build + cache, rebuilds
 | labels changed after export | export re-files a note under `<Label>/` when folder and label disagree | keep folder and label aligned, or accept the re-filing |
 | a rule matched nothing | regex vs actual heading text | the build warns; fix the rule, not the vault |
 | warnings nobody can fix | dangling links are normal mid-authoring | fix or name and accept them; `--strict` is for converter tests |
+| Symptom | Cause | Fix |
+| --- | --- | --- |
+| a relationship appears twice after rebuilding | an export wrote a frontmatter duplicate for a `heading_edges` type | seal the export (`vault_roundtrip.py`), or drop the key |
+| `Section`/`Chunk` gone after export | `vault.yaml` is not exported | copy `.kglite/vault.yaml` into the exported tree, rebuild |
+| export refuses a file | the manifest hash changed (human edit) or another tool wrote it | review, then `--force` deliberately |
 
 ## Verification checklist
 
@@ -246,6 +281,7 @@ A result is trustworthy only when all of these hold:
 | `references/CYPHER-COOKBOOK.md` | the query you need is not in this file |
 | `references/ANNOTATIONS.md` | adding structure to notes, or debugging an annotation that did nothing |
 | `references/LINK-GRAPH.md` | auditing or repairing links, orphans, stubs, hub inflation |
+| `references/WRITEBACK.md` | writing the graph back: canvas, backlinks index, sealed export, round-trip checks |
 | `references/SERVING.md` | MCP server, `.kglite/skills`, `.kglite/recipes`, agent output budgets |
 | `references/OBSIDIAN-CLI.md` | reading and writing notes through the Obsidian CLI |
 | `references/OBSIDIAN-MARKDOWN.md` | wikilinks, embeds, callouts, properties, block ids |
